@@ -1,0 +1,22 @@
+identity:
+  name: check_ssl_certificate
+  author: apiverve
+  label:
+    en_US: "Check SSL Certificate"
+description:
+  human:
+    en_US: "Get the issuer, validity dates and expiry of a website's SSL certificate."
+  llm: "Inspect the SSL certificate served by one domain and return its issuer, subject, validity dates and days until expiry. Read-only."
+parameters:
+  - name: domain
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: "Domain"
+    human_description:
+      en_US: "The domain to check, without https://, for example github.com"
+    llm_description: "The bare domain name whose certificate to inspect."
+extra:
+  python:
+    source: tools/check_ssl_certificate.py

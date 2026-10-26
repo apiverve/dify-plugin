@@ -1,0 +1,22 @@
+identity:
+  name: lookup_dns_records
+  author: apiverve
+  label:
+    en_US: "Look Up DNS Records"
+description:
+  human:
+    en_US: "Get the A, AAAA, MX, NS, TXT, CNAME and SOA records of a domain."
+  llm: "Return the public DNS records (A, AAAA, MX, NS, TXT, CNAME, SOA) of one domain. Pass the bare domain without https://. Read-only."
+parameters:
+  - name: domain
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: "Domain"
+    human_description:
+      en_US: "The domain to look up, without https://, for example example.com"
+    llm_description: "The bare domain name, for example example.com."
+extra:
+  python:
+    source: tools/lookup_dns_records.py

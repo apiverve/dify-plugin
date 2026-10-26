@@ -1,0 +1,22 @@
+identity:
+  name: lookup_ip_address
+  author: apiverve
+  label:
+    en_US: "Look Up IP Address"
+description:
+  human:
+    en_US: "Get the country, city, region, coordinates and timezone of an IP address."
+  llm: "Look up the approximate location of one IPv4 or IPv6 address: country, region, city, coordinates and timezone. Read-only."
+parameters:
+  - name: ip
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: "IP address"
+    human_description:
+      en_US: "The IPv4 or IPv6 address to look up"
+    llm_description: "The IPv4 or IPv6 address to geolocate."
+extra:
+  python:
+    source: tools/lookup_ip_address.py

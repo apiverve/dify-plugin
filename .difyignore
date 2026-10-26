@@ -1,0 +1,10 @@
+test/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.env
+.env.*
+.git/
+*.difypkg
+.gitignore

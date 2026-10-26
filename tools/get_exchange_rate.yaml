@@ -1,0 +1,40 @@
+identity:
+  name: get_exchange_rate
+  author: apiverve
+  label:
+    en_US: "Get Exchange Rate"
+description:
+  human:
+    en_US: "Get the exchange rate between two currencies, today or on a past date."
+  llm: "Return the conversion rate from one currency to another using three-letter ISO codes, for today or a past date. Read-only."
+parameters:
+  - name: currency1
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: "From currency"
+    human_description:
+      en_US: "Three-letter currency code, for example USD"
+    llm_description: "Source currency ISO 4217 code, for example USD."
+  - name: currency2
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: "To currency"
+    human_description:
+      en_US: "Three-letter currency code, for example EUR"
+    llm_description: "Target currency ISO 4217 code, for example EUR."
+  - name: date
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: "Date"
+    human_description:
+      en_US: "Optional past date in YYYY-MM-DD format. Leave empty for the latest rate."
+    llm_description: "Optional past date as YYYY-MM-DD; omit for the latest rate."
+extra:
+  python:
+    source: tools/get_exchange_rate.py

@@ -1,0 +1,31 @@
+identity:
+  name: run_api
+  author: apiverve
+  label:
+    en_US: Run API
+description:
+  human:
+    en_US: Call any API in the APIVerve catalog by its id, with its parameters as JSON.
+  llm: Call one APIVerve API by its api id (for example "whoislookup" or "vatrates") with its parameters as a JSON object. Use Find APIs first to get the api id and parameter names. Each call uses the credits shown on the API's page.
+parameters:
+  - name: api
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: API id
+    human_description:
+      en_US: The API id from the catalog, for example whoislookup
+    llm_description: The api id returned by Find APIs, for example whoislookup.
+  - name: parameters
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: Parameters (JSON)
+    human_description:
+      en_US: 'The API parameters as a JSON object, for example {"domain": "example.com"}'
+    llm_description: 'A JSON object of parameter names to values, for example {"domain": "example.com"}. Omit when the API takes no parameters.'
+extra:
+  python:
+    source: tools/run_api.py

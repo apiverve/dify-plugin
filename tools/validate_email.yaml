@@ -1,0 +1,22 @@
+identity:
+  name: validate_email
+  author: apiverve
+  label:
+    en_US: "Validate Email"
+description:
+  human:
+    en_US: "Check whether an email address is valid, deliverable, disposable or free."
+  llm: "Validate one email address: syntax, MX records, SMTP deliverability, disposable and free-provider flags, and typo suggestions. Read-only."
+parameters:
+  - name: email
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: "Email"
+    human_description:
+      en_US: "The email address to check"
+    llm_description: "The email address to validate, for example jane@example.com."
+extra:
+  python:
+    source: tools/validate_email.py

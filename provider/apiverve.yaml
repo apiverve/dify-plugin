@@ -1,0 +1,35 @@
+identity:
+  author: apiverve
+  name: apiverve
+  label:
+    en_US: APIVerve
+  description:
+    en_US: Hundreds of ready-to-use APIs behind one key. Validate emails and phone numbers, look up IPs, DNS and SSL, get exchange rates, and call any API in the catalog.
+  icon: icon.png
+  tags:
+    - utilities
+    - productivity
+    - finance
+credentials_for_provider:
+  api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: API key
+    placeholder:
+      en_US: Enter your APIVerve API key
+    help:
+      en_US: Get a key from the APIVerve dashboard
+    url: https://dashboard.apiverve.com
+extra:
+  python:
+    source: provider/apiverve.py
+tools:
+  - tools/validate_email.yaml
+  - tools/validate_phone_number.yaml
+  - tools/lookup_ip_address.yaml
+  - tools/lookup_dns_records.yaml
+  - tools/check_ssl_certificate.yaml
+  - tools/get_exchange_rate.yaml
+  - tools/find_apis.yaml
+  - tools/run_api.yaml

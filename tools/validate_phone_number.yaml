@@ -1,0 +1,31 @@
+identity:
+  name: validate_phone_number
+  author: apiverve
+  label:
+    en_US: "Validate Phone Number"
+description:
+  human:
+    en_US: "Check whether a phone number is valid and get its type, carrier region and formats."
+  llm: "Validate one phone number and return whether it is valid, its line type, country, and E.164 and international formats. Read-only."
+parameters:
+  - name: number
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: "Phone number"
+    human_description:
+      en_US: "The phone number to check"
+    llm_description: "The phone number to validate, in any format."
+  - name: country
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: "Country"
+    human_description:
+      en_US: "Two-letter country code, for example us or gb. Optional when the number includes a country code."
+    llm_description: "Optional two-letter ISO country code, needed when the number has no international prefix."
+extra:
+  python:
+    source: tools/validate_phone_number.py

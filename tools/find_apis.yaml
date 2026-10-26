@@ -1,0 +1,33 @@
+identity:
+  name: find_apis
+  author: apiverve
+  label:
+    en_US: Find APIs
+description:
+  human:
+    en_US: Search the APIVerve catalog and see each API's id and parameters. Does not use credits.
+  llm: Search the APIVerve catalog of several hundred APIs by keyword. Returns each match's api id, description and parameters, which Run API needs. Call this before Run API when you do not already know the api id. Free; does not call the API itself.
+parameters:
+  - name: query
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Search
+    human_description:
+      en_US: What you need, for example "vat rates" or "website screenshot"
+    llm_description: A few keywords describing the capability needed, for example "currency convert" or "domain whois".
+  - name: limit
+    type: number
+    required: false
+    form: form
+    default: 10
+    min: 1
+    max: 25
+    label:
+      en_US: Maximum results
+    human_description:
+      en_US: How many APIs to return
+extra:
+  python:
+    source: tools/find_apis.py
