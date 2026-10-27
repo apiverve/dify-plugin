@@ -29,7 +29,7 @@ Find APIs and Run API work together: an agent searches the catalog, picks an API
 ## Requirements
 
 - An APIVerve API key. Each call uses the credits shown on the API's page; the free plan includes a monthly allowance.
-- Outbound HTTPS from the Dify plugin runtime to `api.apiverve.com` and `assets.apiverve.com`.
+- Network connection: outbound HTTPS from the Dify plugin runtime to the APIVerve endpoints `api.apiverve.com` and `assets.apiverve.com`. No other host is contacted.
 
 ## Errors
 
