@@ -82,6 +82,19 @@ class ClientTests(unittest.TestCase):
     def test_search_ranks_title_match_first(self):
         self.assertEqual(apiverve_client.search("whois")[0]["api"], "whoislookup")
 
+    def test_excluded_apis_unreachable(self):
+        catalog = dict(CATALOG, bitcoin={"title": "Bitcoin Price", "path": "/v1/bitcoin", "params": []})
+        apiverve_client._catalog = None
+        with mock.patch.object(apiverve_client, "_open", return_value=FakeResponse(200, {"apis": catalog})):
+            loaded = apiverve_client.catalog()
+        self.assertNotIn("bitcoin", loaded)
+        self.assertNotIn("bitcoin", [m["api"] for m in apiverve_client.search("bitcoin price")])
+        with self.assertRaisesRegex(apiverve_client.ApiverveError, "Unknown"):
+            apiverve_client.run("k", "Bitcoin", {})
+        apiverve_client._catalog = {"bitcoin": catalog["bitcoin"]}
+        with self.assertRaisesRegex(apiverve_client.ApiverveError, "Unknown"):
+            apiverve_client.run("k", "bitcoin", {})
+
 
 if __name__ == "__main__":
     unittest.main()

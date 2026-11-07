@@ -2,7 +2,7 @@
 
 APIVerve gives you several hundred ready-to-use APIs behind one key. This plugin brings them to Dify agents, chatflows and workflows.
 
-**Author:** apiverve · **Version:** 0.1.0 · **Type:** tool · **Source:** https://github.com/apiverve/dify-plugin
+**Author:** apiverve · **Version:** 0.1.1 · **Type:** tool · **Source:** https://github.com/apiverve/dify-plugin
 
 ## Tools
 
@@ -18,6 +18,8 @@ APIVerve gives you several hundred ready-to-use APIs behind one key. This plugin
 | Run API | Call any API in the catalog by id, with its parameters as a JSON object |
 
 Find APIs and Run API work together: an agent searches the catalog, picks an API, then calls it. For example, Find APIs with `whois` returns `whoislookup` and its `domain` parameter, and Run API with `api = whoislookup` and `parameters = {"domain": "example.com"}` returns the record.
+
+Cryptocurrency APIs (Bitcoin and Ethereum prices, and the ticker lookups that cover crypto symbols) are not available through this plugin.
 
 ## Setup
 

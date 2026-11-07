@@ -11,10 +11,12 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 API_BASE = "https://api.apiverve.com"
 CATALOG_URL = "https://assets.apiverve.com/cli-manifest.json"
 ACCOUNT_PATH = "/v1/analytics/account"
-PLUGIN_VERSION = "0.1.0"
+PLUGIN_VERSION = "0.1.1"
 USER_AGENT = f"apiverve-dify/{PLUGIN_VERSION}"
 TIMEOUT_SECONDS = 60
 CATALOG_TTL_SECONDS = 3600
+# Kept out of this plugin: cryptocurrency prices, and ticker APIs that cover crypto symbols.
+EXCLUDED_APIS = frozenset({"bitcoin", "ethereum", "tickernews", "tickersymbols"})
 
 
 class ApiverveError(Exception):
@@ -131,6 +133,7 @@ def catalog():
         try:
             with _open(request) as response:
                 apis = json.load(response)["apis"]
+            apis = {k: v for k, v in apis.items() if k.lower() not in EXCLUDED_APIS}
         except Exception:
             if _catalog is not None:
                 return _catalog
@@ -188,7 +191,7 @@ def run(api_key, api_id, params):
     """Call any catalog API by id, placing each parameter where the API expects it."""
     apis = catalog()
     api_id = (api_id or "").strip().lower()
-    api = apis.get(api_id)
+    api = None if api_id in EXCLUDED_APIS else apis.get(api_id)
     if api is None:
         raise ApiverveError(f'Unknown APIVerve API "{api_id}". Use Find APIs to look up the API id.')
     params = clean(params)
